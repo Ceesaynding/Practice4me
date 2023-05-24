@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Calculator</title>
+  <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+  <h1>Calculator</h1>
+  <input type="text" id="result" readonly><br>
+
+  <button onclick="appendToResult(7)">7</button>
+  <button onclick="appendToResult(8)">8</button>
+  <button onclick="appendToResult(9)">9</button><br>
+
+  <button onclick="appendToResult(4)">4</button>
+  <button onclick="appendToResult(5)">5</button>
+  <button onclick="appendToResult(6)">6</button><br>
+
+  <button onclick="appendToResult(1)">1</button>
+  <button onclick="appendToResult(2)">2</button>
+  <button onclick="appendToResult(3)">3</button><br>
+
+  <button onclick="appendToResult(0)">0</button>
+  <button onclick="addDecimal()">.</button>
+  <button onclick="addOperator('/')">/</button><br>
+  
+  <button onclick="addOperator('+')">+</button>
+  <button onclick="addOperator('-')">-</button>
+  <button onclick="addOperator('*')">*</button><br>
+
+  <button onclick="calculateInverse()">1/x</button>
+  <button onclick="clearResult()">C</button>
+  <button onclick="calculateResult()">=</button>
+
+
+</body>
+<script>
+  var resultField = document.getElementById('result');
+  var expression = '';
+
+  function appendToResult(value) {
+    expression += value;
+    resultField.value = expression;
+  }
+
+  function addOperator(operator) {
+    expression += operator;
+    resultField.value = expression;
+  }
+
+  function addDecimal() {
+    if (expression.indexOf('.') === -1) {
+      expression += '.';
+      resultField.value = expression;
+    }
+  }
+
+  function calculateResult() {
+    try {
+      var result = eval(expression);
+      resultField.value = result;
+      expression = '';
+    } catch (error) {
+      alert('Invalid expression');
+    }
+  }
+
+  function clearResult() {
+    expression = '';
+    resultField.value = '';
+  }
+</script>
+</html>

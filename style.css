@@ -1,0 +1,116 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 20px;
+    }
+
+h1 {
+    text-align: center;
+    margin-bottom: 20px;
+    }
+
+.container {
+    max-width: 600px;
+    margin: 0 auto;
+    }
+
+.form-group {
+    margin-bottom: 20px;
+    }
+
+label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+    }
+
+    input[type="text"],
+    input[type="email"],
+    input[type="password"],
+    select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+    }
+
+.form-button {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+    }
+
+.form-button button {
+    flex: 1;
+    padding: 10px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    }
+
+.form-button button[type="submit"] {
+    margin-right: 10px;
+    }
+
+.form-button button[type="reset"] {
+    background-color: #f44336;
+    }
+
+.calculator-container {
+    max-width: 400px;
+    margin: 0 auto;
+    text-align: center;
+    background-color: #f2f2f2;
+    padding: 20px;
+    border-radius: 5px;
+    }
+
+.calculator-container h2 {
+    margin-top: 0;
+    margin-bottom: 20px;
+    }
+
+.calculator-container input[type="text"] {
+    width: 100%;
+    padding: 10px;
+    font-size: 20px;
+    text-align: right;
+    }
+
+.calculator-container .row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+    }
+
+.calculator-container .row button {
+    flex: 1;
+    padding: 10px;
+    font-size: 16px;
+    background-color: #e7e7e7;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    }
+
+.calculator-container .row .operator-button {
+    background-color: #4CAF50;
+    color: white;
+}
+
+.calculator-container .row .operator-button:hover {
+    background-color: #45a049;
+}
+
+.calculator-container .row .equal-button {
+    background-color: #f44336;
+    color: white;
+}
+
+.calculator-container .row .equal-button:hover {
+    background-color: #cc0000;
+}

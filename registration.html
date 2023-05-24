@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Registration Form</title>
+  <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+  <form id="registrationForm" onsubmit="validateForm(event)">
+    <label for="name">Name:</label>
+    <input type="text" id="name" required><br>
+
+    <label for="surname">Surname:</label>
+    <input type="text" id="surname" required><br>
+
+    <label for="dob">Date of Birth:</label>
+    <input type="text" id="dob" placeholder="dd/mm/yyyy" required><br>
+
+    <label for="email">Email:</label>
+    <input type="email" id="email" required><br>
+
+    <label for="password">Password:</label>
+    <input type="password" id="password" required>
+    <span id="passwordCriteria">(Password should be between 6 to 15 characters and contain at least one uppercase letter, one numeric digit, and one special character)</span>
+    <br>
+
+    <label for="gender">Gender:</label>
+    <select id="gender" required>
+      <option value="">Select</option>
+      <option value="male">Male</option>
+      <option value="female">Female</option>
+      <option value="other">Other</option>
+    </select><br>
+
+    <label for="interests">Interests:</label><br>
+    <input type="checkbox" id="interest1">
+    <label for="interest1">Swim</label><br>
+    <input type="checkbox" id="interest2">
+    <label for="interest2">Code</label><br>
+	<input type="checkbox" id="interest3">
+    <label for="interest2">Read</label><br>
+	<input type="checkbox" id="interest4">
+    <label for="interest2">etc.</label><br>
+   
+
+    <input type="submit" value="Submit">
+    <input type="reset" value="Reset">
+  </form>
+
+  <script>
+    function validateForm(event) {
+      event.preventDefault();
+
+      var name = document.getElementById("name").value;
+      var surname = document.getElementById("surname").value;
+      var dob = document.getElementById("dob").value;
+      var email = document.getElementById("email").value;
+      var password = document.getElementById("password").value;
+      var gender = document.getElementById("gender").value;
+      var interests = document.querySelectorAll('input[type="checkbox"]:checked');
+
+      if (name === "" || surname === "" || dob === "" || email === "" || password === "" || gender === "") {
+        alert("All fields are required");
+        return;
+      }
+
+      if (!/^[a-zA-Z]+$/.test(name) || !/^[a-zA-Z]+$/.test(surname)) {
+        alert("Name and Surname fields should contain only letters");
+        return;
+      }
+
+      var dateRegex = /^\d{2}\/\d{2}\/\d{4}$/;
+      if (!dateRegex.test(dob)) {
+        alert("Invalid date format. Please use dd/mm/yyyy");
+        return;
+      }
+
+      var parts = dob.split('/');
+      var day = parseInt(parts[0], 10);
+      var month = parseInt(parts[1], 10);
+      var year = parseInt(parts[2], 10);
+
+      if (isNaN(day) || isNaN(month) || isNaN(year)) {
+        alert("Invalid date format. Please use dd/mm/yyyy");
+        return;
+      }
+
+      var maxDay = 31;
+
+      if (month === 4 || month === 6 || month === 9 || month === 11) {
+        maxDay = 30;
+      } else if (month === 2) {
+        if (year % 4 === 0 && (year % 100 !== 0 || year % 400 === 0)) {
+          maxDay = 29; // Leap year
+        } else {
+          maxDay = 28;
+        }
+      }
+
+      if (day < 1 || day > maxDay || month < 1 || month > 12 || year < 1900 || year > 2100) {
+        alert("Invalid date");
+        return;
+      }
+
+      var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!emailRegex.test(email)) {
+        alert("Invalid email address");
+        return;
+      }
+
+      var passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{6,15}$/;
+      if (!passwordRegex.test(password)) {
+        alert("Invalid password. Password should be between 6 to 15 characters and contain at least one uppercase letter, one numeric digit, and one special character");
+        return;
+      }
+
+      // If all validations pass, redirect to calculator.html
+      var form = document.createElement('form');
+      form.method = 'GET';
+      form.action = 'calculator.html';
+      document.body.appendChild(form);
+      form.submit();
+    }
+  </script>
+</body>
+</html>
